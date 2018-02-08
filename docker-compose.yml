@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+############################# CouchDB
+
+  radius_dx:
+    image: mbevins/radius_dx:1.0
+    expose:
+      - 4000
+    environment:
+      - MONGO_CONNECTION=mongodb://localenv_mongo/radius
+      - PBHK_LENGTH=32
+
+      ##::Express::
+      - PORT=4000
+      - USE_HELMET=true
+
+    networks:
+      proxy-tier:
+        aliases:
+          - radius_dx
+
+    restart: always
+
+
+
+networks:
+  proxy-tier:
+      external:
+        name: frontov

@@ -1,0 +1,7 @@
+apps:
+  - script   : '/src/server.js'
+    name     : 'MASTER'
+    exec_mode: 'fork'
+    max_memory_restart: '950M'
+    args: '--reporting'
+    instances: 1
